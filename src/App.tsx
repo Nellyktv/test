@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 import './global.css';
 import { linksData, routesData } from './data/linksData/linksData';
 import { readBasket } from './storage/basketMemory';
@@ -8,13 +8,13 @@ export const App = () => {
   const totalCount = basket.reduce((sum, item) => sum + item.amount, 0);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <nav>
         {linksData.map((el) => (
           <Link 
             to={el.linkSrc} 
             key={el.id}
-            style={{ position: 'relative', display: 'inline-block' }}
+            style={{ position: 'relative', display: 'inline-block', marginRight: '15px' }}
           >
             {el.nameLink}
             {el.linkSrc === '/basket' && totalCount > 0 && (
@@ -29,6 +29,6 @@ export const App = () => {
           <Route key={el.id} path={el.path} element={<el.nameElement />} />
         ))}
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
